@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString(exclude = {"member", "tagList"})
+@ToString(exclude = {"member", "tagList", "shareCardList"})
 public class Card {
 
     @Id
@@ -21,7 +21,13 @@ public class Card {
 
     private String background;
 
-    private String qrCode;
+    private String url;
+
+    private String name;
+
+    private String job;
+
+    private String email;
 
     //Card N : 1 Member
     @ManyToOne
@@ -30,5 +36,9 @@ public class Card {
     //Card 1 : N OrderDetail
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "card")
     private List<Tag> tagList;
+
+    //Card 1 : N OrderDetail
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "card")
+    private List<Sharecard> shareCardList;
 
 }

@@ -35,7 +35,7 @@ public class TagRepositoryTest extends BzipApplicationTests {
 
         Card card = new Card();
         card.setBackground("user1234");
-        card.setQrCode("qrqrqr");
+        card.setUrl("http://sdqwewe.qwe");
         card.setMember(member);
         Card newCard = cardRepository.save(card);
 

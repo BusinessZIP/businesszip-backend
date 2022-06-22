@@ -25,12 +25,15 @@ DROP TABLE IF EXISTS `card`;
 CREATE TABLE `card` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `background` varchar(255) NOT NULL,
-  `qr_code` text,
+  `url` text NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `job` varchar(45) NOT NULL,
+  `email` varchar(45) NOT NULL,
   `member_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FKbf204t9qecurpbyoqlmpcy5t4` (`member_id`),
   CONSTRAINT `FKbf204t9qecurpbyoqlmpcy5t4` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +42,7 @@ CREATE TABLE `card` (
 
 LOCK TABLES `card` WRITE;
 /*!40000 ALTER TABLE `card` DISABLE KEYS */;
-INSERT INTO `card` VALUES (1,'user1234','qrqrqr',7),(2,'user1234','qrqrqr',8);
+INSERT INTO `card` VALUES (3,'user1234','https://qwewewe.com','user','developer','user@123.com',9),(4,'user12345','https://qwewewe.com','user','developer','user@123.com',10);
 /*!40000 ALTER TABLE `card` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 23:12:52
+-- Dump completed on 2022-06-23  2:00:53

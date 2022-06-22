@@ -32,7 +32,7 @@ CREATE TABLE `member` (
   `created_at` datetime NOT NULL,
   `unregistered_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
-INSERT INTO `member` VALUES (5,'user01@naver.com','user01','user01','010-1111-2222','REGISTERED','2022-06-22 22:41:54',NULL),(6,'user02@naver.com','user01','user01','010-1111-2222','REGISTERED','2022-06-22 22:43:43',NULL),(7,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-22 23:06:57',NULL),(8,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-22 23:10:53',NULL);
+INSERT INTO `member` VALUES (5,'user01@naver.com','user01','user01','010-1111-2222','REGISTERED','2022-06-22 22:41:54',NULL),(6,'user02@naver.com','user01','user01','010-1111-2222','REGISTERED','2022-06-22 22:43:43',NULL),(7,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-22 23:06:57',NULL),(8,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-22 23:10:53',NULL),(9,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-23 01:56:32',NULL),(10,'user03@naver.com','user03','user03','010-1111-2222','REGISTERED','2022-06-23 02:00:02',NULL);
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-22 23:12:52
+-- Dump completed on 2022-06-23  2:00:52

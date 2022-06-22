@@ -16,29 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `tag`
+-- Table structure for table `sharecard`
 --
 
-DROP TABLE IF EXISTS `tag`;
+DROP TABLE IF EXISTS `sharecard`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tag` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `text` varchar(255) NOT NULL,
+CREATE TABLE `sharecard` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `member_id` bigint NOT NULL,
   `card_id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKoyl6mm2rwvt98ree1lt0mon0h` (`card_id`),
-  CONSTRAINT `FKoyl6mm2rwvt98ree1lt0mon0h` FOREIGN KEY (`card_id`) REFERENCES `card` (`id`)
+  KEY `FKpg6m03y5btww7b552d3st8rrp` (`card_id`),
+  CONSTRAINT `FKpg6m03y5btww7b552d3st8rrp` FOREIGN KEY (`card_id`) REFERENCES `card` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tag`
+-- Dumping data for table `sharecard`
 --
 
-LOCK TABLES `tag` WRITE;
-/*!40000 ALTER TABLE `tag` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tag` ENABLE KEYS */;
+LOCK TABLES `sharecard` WRITE;
+/*!40000 ALTER TABLE `sharecard` DISABLE KEYS */;
+INSERT INTO `sharecard` VALUES (1,5,4);
+/*!40000 ALTER TABLE `sharecard` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
