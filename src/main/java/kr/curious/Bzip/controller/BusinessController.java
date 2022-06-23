@@ -27,7 +27,7 @@ public class BusinessController {
 
     @ResponseBody
     @PostMapping("")
-    public String getAllUsers(@RequestBody MemberIdVO memberIdVO)
+    public String getAllUsersCard(@RequestBody MemberIdVO memberIdVO)
     {
         JsonObject jsonObject = new JsonObject();
 
@@ -44,6 +44,7 @@ public class BusinessController {
             userObj.addProperty("background", sharecard.getCard().getBackground());
             userObj.addProperty("url", sharecard.getCard().getUrl());
             userObj.addProperty("job", sharecard.getCard().getJob());
+            userObj.addProperty("phone", sharecard.getCard().getPhoneNumber());
             userObj.addProperty("email", sharecard.getCard().getEmail());
             userObj.addProperty("member_id", sharecard.getCard().getMember().getId());
 
@@ -78,6 +79,7 @@ public class BusinessController {
         userObj.addProperty("background", card.get().getBackground());
         userObj.addProperty("url", card.get().getUrl());
         userObj.addProperty("job", card.get().getJob());
+        userObj.addProperty("phone", card.get().getPhoneNumber());
         userObj.addProperty("email", card.get().getEmail());
         userObj.addProperty("member_id", card.get().getMember().getId());;
         userObj.add("tags", tagArray);

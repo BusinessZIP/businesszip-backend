@@ -25,6 +25,8 @@ public class Card {
 
     private String job;
 
+    private String phoneNumber;
+
     private String email;
 
     //Card N : 1 Member
