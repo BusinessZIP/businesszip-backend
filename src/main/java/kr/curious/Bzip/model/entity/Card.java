@@ -1,6 +1,7 @@
 package kr.curious.Bzip.model.entity;
 
 import lombok.*;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,16 +20,22 @@ public class Card {
 
     private String background;
 
+    @Nullable
     private String url;
 
+    @Nullable
     private String name;
 
+    @Nullable
     private String job;
 
+    @Nullable
     private String phoneNumber;
 
+    @Nullable
     private String address;
 
+    @Nullable
     private String email;
 
     //Card N : 1 Member
