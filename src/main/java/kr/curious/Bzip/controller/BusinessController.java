@@ -104,7 +104,7 @@ public class BusinessController {
         userObj.addProperty("address", card.get().getAddress());
         userObj.addProperty("member_id", card.get().getMember().getId());;
         userObj.add("tags", tagArray);
-        userObj.addProperty("content", memo.get().getContent());
+        userObj.addProperty("content", (memo.isPresent() == true) ? memo.get().getContent() : null);
 
         jsonObject.add("user", userObj);
 
