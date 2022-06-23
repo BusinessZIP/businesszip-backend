@@ -29,13 +29,21 @@ public class MyPageController {
         cardService.findAllByMemberId(memberIdVO.getId()).forEach(card -> {
             JsonObject cardObj = new JsonObject();
 
+            //Tag Array
+            JsonArray tagArray = new JsonArray();
+            card.getTagList().forEach(tag -> {
+                tagArray.add(tag.getText());
+            });
+
             cardObj.addProperty("id", card.getId());
             cardObj.addProperty("background", card.getBackground());
             cardObj.addProperty("url", card.getUrl());
             cardObj.addProperty("job", card.getJob());
             cardObj.addProperty("phone", card.getPhoneNumber());
             cardObj.addProperty("email", card.getEmail());
+            cardObj.addProperty("address", card.getAddress());
             cardObj.addProperty("member_id", card.getMember().getId());
+            cardObj.add("tags", tagArray);
 
             cardArray.add(cardObj);
         });

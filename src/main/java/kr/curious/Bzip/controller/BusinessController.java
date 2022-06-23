@@ -40,13 +40,21 @@ public class BusinessController {
         sharecardService.findAllByMemberId(memberIdVO.getId()).forEach(sharecard -> {
             JsonObject userObj = new JsonObject();
 
+            //Tag Array
+            JsonArray tagArray = new JsonArray();
+            sharecard.getCard().getTagList().forEach(tag -> {
+                tagArray.add(tag.getText());
+            });
+
             userObj.addProperty("id", sharecard.getCard().getId());
             userObj.addProperty("background", sharecard.getCard().getBackground());
             userObj.addProperty("url", sharecard.getCard().getUrl());
             userObj.addProperty("job", sharecard.getCard().getJob());
             userObj.addProperty("phone", sharecard.getCard().getPhoneNumber());
             userObj.addProperty("email", sharecard.getCard().getEmail());
+            userObj.addProperty("address", sharecard.getCard().getAddress());
             userObj.addProperty("member_id", sharecard.getCard().getMember().getId());
+            userObj.add("tags", tagArray);
 
             userArray.add(userObj);
         });
@@ -81,6 +89,7 @@ public class BusinessController {
         userObj.addProperty("job", card.get().getJob());
         userObj.addProperty("phone", card.get().getPhoneNumber());
         userObj.addProperty("email", card.get().getEmail());
+        userObj.addProperty("address", card.get().getAddress());
         userObj.addProperty("member_id", card.get().getMember().getId());;
         userObj.add("tags", tagArray);
 

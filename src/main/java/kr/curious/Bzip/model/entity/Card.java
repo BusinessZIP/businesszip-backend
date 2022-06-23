@@ -27,6 +27,8 @@ public class Card {
 
     private String phoneNumber;
 
+    private String address;
+
     private String email;
 
     //Card N : 1 Member
