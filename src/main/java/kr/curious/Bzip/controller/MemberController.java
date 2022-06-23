@@ -5,6 +5,8 @@ import kr.curious.Bzip.model.entity.Member;
 import kr.curious.Bzip.repository.MemberRepository;
 import kr.curious.Bzip.utils.JwtUtil;
 import kr.curious.Bzip.utils.StatusCode;
+import kr.curious.Bzip.vo.LoginVO;
+import kr.curious.Bzip.vo.SignUpVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +27,12 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping("/login")
-    public String Login(@RequestParam String userId, @RequestParam String password) throws Exception {
+    public String Login(@RequestBody LoginVO loginVO) throws Exception {
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("code", StatusCode.UNAUTHORIZED);
 
-        Optional<Member> memberOptional = memberRepository.findByEmailAndPassword(userId, password);
+        Optional<Member> memberOptional = memberRepository.findByEmailAndPassword(loginVO.getEmail(), loginVO.getPassword());
 
         memberOptional.ifPresent(member -> {
             jsonObject.addProperty("code", StatusCode.OK);
@@ -41,18 +43,17 @@ public class MemberController {
 
     @ResponseBody
     @PostMapping("/signup")
-    public String Signup(@RequestParam String email, @RequestParam String password, @RequestParam String name, @RequestParam String phoneNumber)
+    public String Signup(@RequestBody SignUpVO signUpVO)
             throws Exception {
         JsonObject jsonObject = new JsonObject();
 
-
-        Optional<Member> memberOptional = memberRepository.findByEmail(email);
+        Optional<Member> memberOptional = memberRepository.findByEmail(signUpVO.getEmail());
         if(!memberOptional.isPresent()) {
             Member member = new Member();
-            member.setEmail(email);
-            member.setPassword(password);
-            member.setName(name);
-            member.setPhoneNumber(phoneNumber);
+            member.setEmail(signUpVO.getEmail());
+            member.setPassword(signUpVO.getPassword());
+            member.setName(signUpVO.getName());
+            member.setPhoneNumber(signUpVO.getPhone());
             member.setStatus("REGISTERED");
             member.setCreatedAt(LocalDateTime.now());
             memberRepository.save(member);
