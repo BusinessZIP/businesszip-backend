@@ -3,8 +3,10 @@ package kr.curious.Bzip.controller;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import kr.curious.Bzip.Service.CardService;
+import kr.curious.Bzip.Service.MemoService;
 import kr.curious.Bzip.Service.SharecardService;
 import kr.curious.Bzip.model.entity.Card;
+import kr.curious.Bzip.model.entity.Memo;
 import kr.curious.Bzip.utils.JwtUtil;
 import kr.curious.Bzip.utils.StatusCode;
 import kr.curious.Bzip.vo.CardIdVO;
@@ -25,6 +27,7 @@ public class BusinessController {
 
     private final SharecardService sharecardService;
     private final CardService cardService;
+    private final MemoService memoService;
     private final JwtUtil jwtUtil;
 
     @ResponseBody
@@ -70,7 +73,7 @@ public class BusinessController {
 
     @ResponseBody
     @PostMapping("/info")
-    public String getUserCardDetail(@RequestBody CardIdVO cardIdVO)
+    public String getUserCardDetail(@RequestHeader("X-AUTH-TOKEN") String jwt, @RequestBody CardIdVO cardIdVO) throws Exception
     {
         JsonObject jsonObject = new JsonObject();
 
@@ -85,6 +88,9 @@ public class BusinessController {
             tagArray.add(tag.getText());
         });
 
+        //Memo
+        Optional<Memo> memo = memoService.findByMemberIdAndCard_Id(jwtUtil.getAuthentication(jwt).get().getId(), cardIdVO.getId());
+
         //User Info
         JsonObject userObj = new JsonObject();
         userObj.addProperty("id", card.get().getId());
@@ -96,6 +102,7 @@ public class BusinessController {
         userObj.addProperty("address", card.get().getAddress());
         userObj.addProperty("member_id", card.get().getMember().getId());;
         userObj.add("tags", tagArray);
+        userObj.addProperty("content", memo.get().getContent());
 
         jsonObject.add("user", userObj);
 
