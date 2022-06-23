@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface CardRepository extends JpaRepository<Card, Long> {
     public Optional<Card> findById(Long cardId);
     public List<Card> findAllByMemberId(Long memberId);
+    public List<Card> findAllByEmailContainingIgnoreCaseOrJobContainingIgnoreCaseOrNameContainingIgnoreCaseOrPhoneNumberContainingIgnoreCaseOrAddressContainingIgnoreCase(String email, String job, String name, String phone, String address);
 }
