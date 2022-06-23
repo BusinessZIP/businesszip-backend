@@ -61,6 +61,7 @@ public class MyPageController {
             cardObj.addProperty("url", card.getUrl());
             cardObj.addProperty("job", card.getJob());
             cardObj.addProperty("phone", card.getPhoneNumber());
+            cardObj.addProperty("name", card.getName());
             cardObj.addProperty("email", card.getEmail());
             cardObj.addProperty("address", card.getAddress());
             cardObj.addProperty("member_id", card.getMember().getId());
@@ -141,6 +142,7 @@ public class MyPageController {
         userObj.addProperty("url", card.get().getUrl());
         userObj.addProperty("job", card.get().getJob());
         userObj.addProperty("phone", card.get().getPhoneNumber());
+        userObj.addProperty("name", card.get().getName());
         userObj.addProperty("email", card.get().getEmail());
         userObj.addProperty("address", card.get().getAddress());
         userObj.addProperty("member_id", card.get().getMember().getId());;

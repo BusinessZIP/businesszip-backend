@@ -67,6 +67,7 @@ public class SearchController {
                 userObj.addProperty("url", card.getUrl());
                 userObj.addProperty("job", card.getJob());
                 userObj.addProperty("phone", card.getPhoneNumber());
+                userObj.addProperty("name", card.getName());
                 userObj.addProperty("email", card.getEmail());
                 userObj.addProperty("address", card.getAddress());
                 userObj.addProperty("member_id", card.getMember().getId());
@@ -123,6 +124,7 @@ public class SearchController {
                 userObj.addProperty("url", card.getUrl());
                 userObj.addProperty("job", card.getJob());
                 userObj.addProperty("phone", card.getPhoneNumber());
+                userObj.addProperty("name", card.getName());
                 userObj.addProperty("email", card.getEmail());
                 userObj.addProperty("address", card.getAddress());
                 userObj.addProperty("member_id", card.getMember().getId());

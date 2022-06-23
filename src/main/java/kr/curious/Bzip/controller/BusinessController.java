@@ -58,6 +58,7 @@ public class BusinessController {
             userObj.addProperty("url", sharecard.getCard().getUrl());
             userObj.addProperty("job", sharecard.getCard().getJob());
             userObj.addProperty("phone", sharecard.getCard().getPhoneNumber());
+            userObj.addProperty("name", sharecard.getCard().getName());
             userObj.addProperty("email", sharecard.getCard().getEmail());
             userObj.addProperty("address", sharecard.getCard().getAddress());
             userObj.addProperty("member_id", sharecard.getCard().getMember().getId());
@@ -98,6 +99,7 @@ public class BusinessController {
         userObj.addProperty("url", card.get().getUrl());
         userObj.addProperty("job", card.get().getJob());
         userObj.addProperty("phone", card.get().getPhoneNumber());
+        userObj.addProperty("name", card.get().getName());
         userObj.addProperty("email", card.get().getEmail());
         userObj.addProperty("address", card.get().getAddress());
         userObj.addProperty("member_id", card.get().getMember().getId());;
