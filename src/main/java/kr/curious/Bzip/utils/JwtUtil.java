@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class JwtUtil {
 
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 1000 * 60 * 60 * 24;
 
     private final MemberService memberService;
 
@@ -25,26 +25,28 @@ public class JwtUtil {
     }
 
     public String createToken(String userPk) {
-        Claims claims = Jwts.claims().setSubject(userPk);
         Date now = new Date();
+        Claims claims = Jwts.claims().setSubject("access_token")
+                .setIssuedAt(now)// 토큰 발행일자;
+                .setExpiration(new Date(now.getTime() + JWT_TOKEN_VALIDITY)); // 토큰 유효시간 설정
+        claims.put("uid", userPk);
         return Jwts.builder()
                 .setClaims(claims) // 데이터
-                .setIssuedAt(now) // 토큰 발행일자
-                .setExpiration(new Date(now.getTime() + JWT_TOKEN_VALIDITY)) // 토큰 유효시간 설정
                 .signWith(SignatureAlgorithm.HS256, secretKey) // 암호화 알고리즘, 암호키
                 .compact();
     }
 
     // Jwt 토큰으로 인증 정보 조회
     public Optional<Member> getAuthentication(String token) throws Exception {
-        Optional<Member> member = memberService.loadUserByUsername(this.getUserPk(token));
+        String userPk = this.getUserPk(token);
+        Optional<Member> member = memberService.loadUserByUsername(userPk);
         return member;
     }
 
     // Jwt 토큰에서 회원 구별 정보 추출
     public String getUserPk(String token) throws Exception{
         try {
-            return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
+            return (String) Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().get("uid");
         } catch (Exception e) {
             return null;
         }

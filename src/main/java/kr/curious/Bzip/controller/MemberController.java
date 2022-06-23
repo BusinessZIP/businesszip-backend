@@ -68,7 +68,7 @@ public class MemberController {
     @ResponseBody
     @PostMapping("/test")
     public void Test(@RequestHeader("X-AUTH-TOKEN") String jwt) throws Exception {
-
+        System.out.println(jwtUtil.getAuthentication(jwt).get().getId());
         System.out.println(jwtUtil.getAuthentication(jwt).get().getName());
     }
 
