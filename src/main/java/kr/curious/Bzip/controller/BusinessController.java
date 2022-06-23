@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import kr.curious.Bzip.Service.CardService;
 import kr.curious.Bzip.Service.SharecardService;
 import kr.curious.Bzip.model.entity.Card;
+import kr.curious.Bzip.utils.JwtUtil;
 import kr.curious.Bzip.utils.StatusCode;
 import kr.curious.Bzip.vo.CardIdVO;
 import kr.curious.Bzip.vo.MemberIdVO;
@@ -24,12 +25,15 @@ public class BusinessController {
 
     private final SharecardService sharecardService;
     private final CardService cardService;
+    private final JwtUtil jwtUtil;
 
     @ResponseBody
     @PostMapping("")
-    public String getAllUsersCard(@RequestBody MemberIdVO memberIdVO)
+    public String getAllUsersCard(@RequestHeader("X-AUTH-TOKEN") String jwt) throws Exception
     {
         JsonObject jsonObject = new JsonObject();
+
+        if(jwt == null) { jsonObject.addProperty("code", StatusCode.NOT_FOUND); return jsonObject.toString(); }
 
         //Status Code
         jsonObject.addProperty("code", StatusCode.OK);
@@ -37,7 +41,7 @@ public class BusinessController {
         //AllUsers Info
         JsonArray userArray = new JsonArray();
 
-        sharecardService.findAllByMemberId(memberIdVO.getId()).forEach(sharecard -> {
+        sharecardService.findAllByMemberId(jwtUtil.getAuthentication(jwt).get().getId()).forEach(sharecard -> {
             JsonObject userObj = new JsonObject();
 
             //Tag Array

@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CardVO {
-    private Long id;
+    //private Long id;
     private String name;
     private String job;
     private String background;

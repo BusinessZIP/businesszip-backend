@@ -8,6 +8,7 @@ import kr.curious.Bzip.Service.TagService;
 import kr.curious.Bzip.model.entity.Card;
 import kr.curious.Bzip.model.entity.Member;
 import kr.curious.Bzip.model.entity.Tag;
+import kr.curious.Bzip.utils.JwtUtil;
 import kr.curious.Bzip.utils.StatusCode;
 import kr.curious.Bzip.vo.CardIdVO;
 import kr.curious.Bzip.vo.CardVO;
@@ -28,19 +29,22 @@ public class MyPageController {
     private final CardService cardService;
     private final MemberService memberService;
     private final TagService tagService;
+    private final JwtUtil jwtUtil;
 
     @ResponseBody
     @PostMapping("")
-    public String getAllMyCards(@RequestBody MemberIdVO memberIdVO)
+    public String getAllMyCards(@RequestHeader("X-AUTH-TOKEN") String jwt) throws Exception
     {
         JsonObject jsonObject = new JsonObject();
+
+        if(jwt == null) { jsonObject.addProperty("code", StatusCode.NOT_FOUND); return jsonObject.toString(); }
 
         //Status Code
         jsonObject.addProperty("code", StatusCode.OK);
 
         //My All Card
         JsonArray cardArray = new JsonArray();
-        cardService.findAllByMemberId(memberIdVO.getId()).forEach(card -> {
+        cardService.findAllByMemberId(jwtUtil.getAuthentication(jwt).get().getId()).forEach(card -> {
             JsonObject cardObj = new JsonObject();
 
             //Tag Array
@@ -69,12 +73,14 @@ public class MyPageController {
 
     @ResponseBody
     @PostMapping("post-card")
-    public String createMyCard(@RequestBody CardVO cardVO)
+    public String createMyCard(@RequestHeader("X-AUTH-TOKEN") String jwt, @RequestBody CardVO cardVO) throws Exception
     {
         JsonObject jsonObject = new JsonObject();
 
+        if(jwt == null) { jsonObject.addProperty("code", StatusCode.NOT_FOUND); return jsonObject.toString(); }
+
         AtomicReference<Card> cardByTag = new AtomicReference<>(new Card());
-        Optional<Member> oMember = memberService.findById(cardVO.getId());
+        Optional<Member> oMember = memberService.findById(jwtUtil.getAuthentication(jwt).get().getId());
 
         oMember.ifPresent(member -> {
 
@@ -92,6 +98,7 @@ public class MyPageController {
             cardByTag.set(cardService.save(card));
         });
 
+        //Create Tag
         cardVO.getTags().forEach( tagText -> {
             Tag tag = new Tag();
             tag.setText(tagText.toString());
