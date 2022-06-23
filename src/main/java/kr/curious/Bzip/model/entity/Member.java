@@ -38,6 +38,6 @@ public class Member {
 
     // Member 1 : N Card
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
-    private List<Card> cardList;
+    private List<Card> cardList; //본인의 명함 리스트
 
 }

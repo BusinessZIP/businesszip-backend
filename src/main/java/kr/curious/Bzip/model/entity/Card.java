@@ -1,9 +1,6 @@
 package kr.curious.Bzip.model.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -12,6 +9,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
 @ToString(exclude = {"member", "tagList", "shareCardList"})
 public class Card {
 
@@ -39,6 +37,6 @@ public class Card {
 
     //Card 1 : N OrderDetail
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "card")
-    private List<Sharecard> shareCardList;
+    private List<Sharecard> shareCardList; //타인의 카드 리스트
 
 }

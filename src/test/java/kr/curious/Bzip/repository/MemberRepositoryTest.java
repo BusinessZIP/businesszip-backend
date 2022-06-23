@@ -24,9 +24,9 @@ public class MemberRepositoryTest extends BzipApplicationTests {
     public void create() {
 
         Member member = new Member();
-        member.setEmail("user02@naver.com");
-        member.setPassword("user01");
-        member.setName("user01");
+        member.setEmail("user03@naver.com");
+        member.setPassword("user03");
+        member.setName("user03");
         member.setPhoneNumber("010-1111-2222");
         member.setStatus("REGISTERED");
         member.setCreatedAt(LocalDateTime.now());

@@ -25,23 +25,28 @@ public class TagRepositoryTest extends BzipApplicationTests {
     public void create() {
 
         Member member = new Member();
-        member.setEmail("user03@naver.com");
-        member.setPassword("user03");
-        member.setName("user03");
+        member.setId(2L);
+        member.setEmail("user02@naver.com");
+        member.setPassword("user02");
+        member.setName("user02");
         member.setPhoneNumber("010-1111-2222");
         member.setStatus("REGISTERED");
         member.setCreatedAt(LocalDateTime.now());
-        memberRepository.save(member);
+        //memberRepository.save(member);
 
         Card card = new Card();
-        card.setBackground("user1234");
-        card.setUrl("http://sdqwewe.qwe");
+        card.setId(5L);
+        card.setBackground("user1234567890");
+        card.setUrl("https://qwewewe.com");
+        card.setName("user567890");
+        card.setJob("developer");
+        card.setEmail("user@123.com");
         card.setMember(member);
-        Card newCard = cardRepository.save(card);
+        //cardRepository.save(card);
 
         Tag tag = new Tag();
-        tag.setText("카카오");
-        tag.setCard(newCard);
+        tag.setText("직방");
+        tag.setCard(card);
         Tag newTag = tagRepository.save(tag);
         Assertions.assertNotNull(newTag);
     }

@@ -14,13 +14,12 @@ public class Sharecard {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; //고유 PK
 
-    private Long memberId;
+    private Long memberId; // 사용자 memberId
 
     //Sharecard N : 1 Card
     @ManyToOne
-    private Card card;
-
+    private Card card; // 사용자가 가지고 있는 card Id
 
 }

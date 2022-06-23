@@ -26,25 +26,27 @@ public class SharecardRepositoryTest extends BzipApplicationTests {
     public void create() {
 
         Member member = new Member();
-        member.setEmail("user03@naver.com");
-        member.setPassword("user03");
-        member.setName("user03");
+        member.setId(Long.valueOf(2));
+        member.setEmail("user02@naver.com");
+        member.setPassword("user02");
+        member.setName("user02");
         member.setPhoneNumber("010-1111-2222");
         member.setStatus("REGISTERED");
         member.setCreatedAt(LocalDateTime.now());
-        memberRepository.save(member);
+        //memberRepository.save(member);
 
         Card card = new Card();
-        card.setBackground("user12345");
+        card.setId(5L);
+        card.setBackground("user1234567890");
         card.setUrl("https://qwewewe.com");
-        card.setName("user");
+        card.setName("user567890");
         card.setJob("developer");
         card.setEmail("user@123.com");
         card.setMember(member);
-        cardRepository.save(card);
+        //cardRepository.save(card);
 
         Sharecard sharecard = new Sharecard();
-        sharecard.setMemberId(5L);
+        sharecard.setMemberId(1L);
         sharecard.setCard(card);
         Sharecard sharecard1 = sharecardRepository.save(sharecard);
         Assertions.assertNotNull(sharecard1);
