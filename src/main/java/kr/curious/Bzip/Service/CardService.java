@@ -16,4 +16,5 @@ public class CardService {
 
     public Optional<Card> findById(Long cardId) { return cardRepository.findById(cardId); }
     public List<Card> findAllByMemberId(Long memberId) { return cardRepository.findAllByMemberId(memberId); }
+    public Card save(Card card) { return cardRepository.save(card); }
 }

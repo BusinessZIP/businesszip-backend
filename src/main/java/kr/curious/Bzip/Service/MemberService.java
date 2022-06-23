@@ -22,4 +22,5 @@ public class MemberService {
         Optional<Member> member = memberRepository.findById(Long.valueOf(userPk));
         return member;
     }
+    public Optional<Member> findById(Long id) { return memberRepository.findById(id); }
 }

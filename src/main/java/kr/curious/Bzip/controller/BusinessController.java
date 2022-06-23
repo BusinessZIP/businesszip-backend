@@ -66,7 +66,7 @@ public class BusinessController {
 
     @ResponseBody
     @PostMapping("/info")
-    public String getUserDetail(@RequestBody CardIdVO cardIdVO)
+    public String getUserCardDetail(@RequestBody CardIdVO cardIdVO)
     {
         JsonObject jsonObject = new JsonObject();
 
